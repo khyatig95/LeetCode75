@@ -12,37 +12,38 @@ public:
     int search(vector<int>& nums, int target) {
         int size = nums.size(); 
        
-        if (size == 1) {
-            if (nums[0] == target)
-                return 0;
+        return (BinarySearch(nums, 0, size-1, target));
+    }
+    
+    int BinarySearch(vector<int>& nums, int start, int end, int target) {
+        
+        if ((end-start+1) == 1) {
+            if (nums[start] == target)
+                return start;
             else 
                 return -1;
         } 
         
-        int mid = (size%2 == 0) ? size/2 : (size+1)/2 - 1;
-        int index;
+        int mid = (end-start+1)/2 + start;
+        
         if (nums[mid] == target)
             return mid;
         
-        bool isArrayRotated = nums[0] > nums[size-1]; 
-        bool pivotFirstHalf = nums[mid] < nums[0]; 
+        bool isArrayRotated = nums[start] > nums[end]; 
+        bool pivotFirstHalf = nums[mid] < nums[start]; 
         
         bool secondHalf = isArrayRotated ? (                                   
-                                pivotFirstHalf ? (target > nums[mid] && target <= nums[size-1])
-                                                : !(target >= nums[0] && target < nums[mid])
+                                pivotFirstHalf ? (target > nums[mid] && target <= nums[end])
+                                                : !(target >= nums[start] && target < nums[mid])
                                             ) 
-                                        : target > nums[mid]; 
+                                        : (
+                                            target > nums[mid]
+                                          ); 
         
-        if (secondHalf) {           
-            nums.erase(nums.begin(), nums.begin()+mid);
-            index = search(nums, target);
-            if (index != -1)
-                return(mid + index);
-            else 
-                return -1;
-        } else { //First half
-            nums.erase(nums.begin()+mid, nums.end());
-            return(search(nums, target));
+        if (secondHalf && (mid+1 <= end)) { //Second half           
+            return(BinarySearch(nums, mid+1, end, target));
+        } else if (mid-1 >= start) { //First half
+            return(BinarySearch(nums, start, mid-1, target));
         }
         return -1;
     }
