@@ -13,20 +13,22 @@ https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 #include <algorithm>
 class Solution {
 public:
-    int findMin(vector<int>& nums) {        
-        if (nums.size() == 2) {
-            return min(nums[0], nums[1]);
-        } else if (nums.size() < 2) {
-            return nums.front();
-        }
-        
+    int findMin(vector<int>& nums) {   
         int size = nums.size();
-        int mid = (size%2 == 0) ? size/2 : (size+1)/2-1;
-        if ((nums[0] < nums[size-1] && nums[mid] > nums[0]) || (nums[0] > nums[size-1] && nums[mid] < nums[0]))  //Pick front part of array
-            nums.erase(nums.begin() + mid+1, nums.end());
-        else //Pick latter part of the array
-            nums.erase(nums.begin(), nums.begin()+mid);
+        return(BinarySearch(nums, 0, size-1));     
+    }
+    
+    int BinarySearch(vector<int>& nums, int start, int end) {
+        if (end-start+1 == 2) {
+            return min(nums[start], nums[end]);
+        } else if (end-start < 2) {
+            return nums[start];
+        }   
         
-        return(findMin(nums));     //Space : O(logN)
+        int mid = (end-start+1)/2 + start;
+        if ((nums[start] < nums[end] && nums[mid] > nums[start]) || (nums[start] > nums[end] && nums[mid] < nums[start]))  //Pick front part of array
+            return(BinarySearch(nums, start, mid));
+        else //Pick latter part of the array
+            return(BinarySearch(nums, mid, end));
     }
 };
