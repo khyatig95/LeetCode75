@@ -4,6 +4,9 @@ The test cases are generated so that the answer will fit in a 32-bit integer.
 A subarray is a contiguous subsequence of the array.
 
 https://leetcode.com/problems/maximum-product-subarray/
+
+Time Complexity : O(N)
+Space Complexity : O(1)
 */
 
 #include <limits.h>
