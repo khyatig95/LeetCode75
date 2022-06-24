@@ -6,7 +6,7 @@ You must write an algorithm with O(log n) runtime complexity.
 
 https://leetcode.com/problems/search-in-rotated-sorted-array/
 
-Time Complexity : O(N)
+Time Complexity : O(logN)
 Space Complexity : O(1)
 */
 
