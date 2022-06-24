@@ -21,6 +21,9 @@ fp          = [ 1, 1,2,6]
           *
 reverse(rp) = [24,12,4,1]
 res         = [24,12,8,6]
+
+Time Complexity : O(N)
+Space Complexity : O(N)
 */
 
 class Solution {
