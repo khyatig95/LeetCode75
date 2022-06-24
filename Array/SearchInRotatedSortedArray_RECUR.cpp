@@ -5,6 +5,9 @@ Given the array nums after the possible rotation and an integer target, return t
 You must write an algorithm with O(log n) runtime complexity.
 
 https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+Time Complexity : O(logN)
+Space Complexity : due to stack for recursive calls - O(logN)
 */
 
 class Solution {
