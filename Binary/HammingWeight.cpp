@@ -3,7 +3,7 @@ Problem : Write a function that takes an unsigned integer and returns the number
 
 https://leetcode.com/problems/number-of-1-bits/
 
-Time Complexity : O(Num of 1's)
+Time Complexity : O(logN)
 Space Complexity : O(1)
 */
 
