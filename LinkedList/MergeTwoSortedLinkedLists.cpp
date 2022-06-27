@@ -5,7 +5,7 @@ Return the head of the merged linked list.
 
 https://leetcode.com/problems/merge-two-sorted-lists/
 
-Time Complexity : O(N*M)
+Time Complexity : O(N+M)
 Space Complexity : O(N+M)
 */
 
