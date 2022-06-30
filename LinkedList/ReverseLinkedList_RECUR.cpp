@@ -2,7 +2,7 @@
 Problem : Given the head of a singly linked list, reverse the list, and return the reversed list.
 https://leetcode.com/problems/reverse-linked-list/
 Time Complexity : O(N)
-Space Complexity : O(1)
+Space Complexity : O(N) stack for N recursive calls
 */
 
 
@@ -25,14 +25,18 @@ public:
     
     ListNode* Reverse(ListNode* revHead, ListNode* head) {
         if (head == nullptr || head->next == nullptr) {
-            if (revHead != nullptr) 
-                head->next = revHead;
+            if (revHead != nullptr) {
+                if (head == nullptr)
+                    head = revHead;
+                else
+                    head->next =  revHead;
+            }
             return head;
         }
             
         ListNode* prev = revHead;
         revHead = head;
-        head = revHead->next;
+        head = head->next;
         revHead->next = prev;
         return(Reverse(revHead, head));
     }   
